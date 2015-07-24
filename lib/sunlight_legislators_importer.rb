@@ -2,13 +2,15 @@ require 'csv'
 
 class SunlightLegislatorsImporter
   def self.import(filename)
+    # p filename
     csv = CSV.new(File.open(filename), :headers => true)
     csv.each do |row|
-      row.each do |field, value|
-        # TODO: begin
-        raise NotImplementedError, "TODO: figure out what to do with this row and do it!"
-        # TODO: end
-      end
+      Legislator.create(row.to_hash)
+      # l = Legislator.new
+      # row.each do |field, value|
+      #   l.send(field, value)
+      # end
+      # l.save
     end
   end
 end
